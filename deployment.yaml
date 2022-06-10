@@ -1,0 +1,44 @@
+# console master
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: console
+  labels:
+    app: console
+spec:
+  selector:
+    app: console
+  ports:
+    - protocol: TCP
+      name: http
+      port: 8080
+      nodePort: 30089
+      # targetPort: 8080
+  type: NodePort
+  # clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: console
+  labels:
+    app: console
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: console
+  template:
+    metadata:
+      labels:
+        app: console
+    spec:
+      containers:
+        - name: console
+          image: mx2542/anti-console:1.0
+          command: ["yarn"]
+          args: ["serve"]
+          ports:
+          - containerPort: 8080
+          imagePullPolicy: Always

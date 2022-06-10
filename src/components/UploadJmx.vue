@@ -5,7 +5,7 @@
       <el-aside width="200px">Aside</el-aside>
       <el-container>
         <el-main>
-          <el-upload class="upload-demo" name="fp" action="http://127.0.0.1:8000/upload/" :on-preview="handlePreview"
+          <el-upload class="upload-demo" name="fp" action="http://127.0.0.1:8004/upload/" :on-preview="handlePreview"
             :on-remove="handleRemove" :before-remove="beforeRemove" multiple :limit="3" :on-exceed="handleExceed"
             :file-list="fileList">
             <el-button type="primary">Click to upload</el-button>
@@ -56,7 +56,7 @@ export default {
 
     })
     const getList = async () => {
-      const resp = await axios.get('http://127.0.0.1:8000/file_list')
+      const resp = await axios.get('http://127.0.0.1:8004/file_list')
       tableData.value = [{
         date: '2016-05-03',
         name: resp.data[0],
@@ -84,12 +84,12 @@ export default {
 
   methods: {
     async one() {
-      await axios.post('http://127.0.0.1:8001/jobs/jmx')
+      await axios.post('http://127.0.0.1:8003/jobs/jmx')
       alert('创建成功')
 
     },
     async two() {
-      await axios.delete('http://127.0.0.1:8001/jobs/jmx')
+      await axios.delete('http://127.0.0.1:8003/jobs/jmx')
       alert('删除成功')
 
     },

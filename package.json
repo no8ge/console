@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "docker": "docker buildx build  -f Dockerfile  --platform linux/amd64 -t mx2542/anti-console:1.0 . --push",
+    "deploy": "kubectl apply -f deployment.yaml"
   },
   "dependencies": {
     "axios": "^0.27.2",
