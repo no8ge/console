@@ -4,11 +4,13 @@ WORKDIR /app
 
 COPY . /app
 
-RUN yarn install && yarn serve
+RUN yarn install
+
+CMD [ "yarn" ,"serve"]
 
 
 
-FROM nginx
-RUN mkdir /app
-COPY --from=0 /app/dist /app
-COPY nginx.conf /etc/nginx/nginx.conf
+# FROM nginx
+# RUN mkdir /app
+# COPY --from=0 /app/dist /app
+# COPY nginx.conf /etc/nginx/nginx.conf
