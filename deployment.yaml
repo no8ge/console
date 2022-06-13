@@ -37,8 +37,8 @@ spec:
       containers:
         - name: console
           image: mx2542/anti-console:1.0
-          command: ["yarn"]
-          args: ["serve"]
+          # command: ["yarn"]
+          # args: ["serve"]
           ports:
-          - containerPort: 8080
+          - containerPort: 80
           imagePullPolicy: Always
