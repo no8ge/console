@@ -15,7 +15,7 @@
               </div>
             </template>
           </el-upload>
-          <el-table :data="tableData" style="width: 100%">
+          <el-table :data="tableData" style="width: 100%" align="center">
             <el-table-column fixed prop="date" label="Date" width="150" />
             <el-table-column prop="name" label="Name" width="120" />
             <el-table-column prop="type" label="type" width="120" />

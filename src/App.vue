@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/heart.jpg" height="98.1" width="120.8">
-  <UploadJmx msg="Welcome to kakax"/>
+  <UploadJmx msg="Welcome to Tink"/>
 </template>
 
 <script>
