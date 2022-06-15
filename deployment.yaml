@@ -14,8 +14,8 @@ spec:
       port: 80
       # nodePort: 31494
       targetPort: 80
-  type: NodePort
-  # clusterIP: None
+  # type: NodePort
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment

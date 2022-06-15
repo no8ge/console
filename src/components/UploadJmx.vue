@@ -5,7 +5,7 @@
       <el-aside width="200px">Aside</el-aside>
       <el-container>
         <el-main>
-          <el-upload class="upload-demo" name="file" action="http://127.0.0.1:8004/files/" :on-preview="handlePreview"
+          <el-upload class="upload-demo" name="file" action="http://tink.com:31695/files" :on-preview="handlePreview"
             :on-change="handlechange" :on-remove="handleRemove" :before-remove="beforeRemove" multiple :limit="3"
             :on-exceed="handleExceed" :file-list="fileList">
             <el-button type="primary">Click to upload</el-button>
@@ -38,7 +38,7 @@ import { ref, onMounted } from 'vue';
 const tableData = ref([])
 
 const getList = async () => {
-  const resp = await axios.get('http://127.0.0.1:8004/files')
+  const resp = await axios.get('http://tink.com:31695/files')
 
   const td = []
   for (var i = 0; i < resp.data.details.length; i++) {
@@ -81,7 +81,7 @@ export default {
     async deleteFile(index) {
       alert('确认删除？')
       const name = tableData.value[index].name
-      await axios.delete(`http://127.0.0.1:8004/files/${name}`)
+      await axios.delete(`http://tink.com:31695/files/${name}`)
       getList()
     },
   }
