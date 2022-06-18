@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "docker": "docker buildx build  -f Dockerfile  --platform linux/amd64 -t mx2542/anti-console:latest . --push",
-    "deploy": "kubectl apply -f deployment.yaml"
+    "deploy": "helm install console chart"
   },
   "dependencies": {
     "axios": "^0.27.2",
