@@ -26,7 +26,6 @@
             <el-table-column fixed="right" label="Operations" width="120">
               <template #default="scope">
                 <el-button link type="primary" size="small" @click="deleteFile(scope.$index)">delete</el-button>
-                <!-- <el-button link type="primary" size="small" @click="runJmx(scope.$index)">run</el-button> -->
               </template>
             </el-table-column>
           </el-table>
@@ -47,7 +46,7 @@
 
               <!-- 自定义下拉框 -->
               <el-select v-model="form.jmx" placeholder="please select jmx file">
-                <el-option v-for="item in jmxs" :key="item.name" :label="item.name" :value="item.name"
+                <el-option v-for="item in tableData" :key="item.name" :label="item.name" :value="item.name"
                   :disabled="flase" />
               </el-select>
               <!-- 自定义下拉框 -->
@@ -155,7 +154,6 @@ const form = reactive({
 const tableData = ref([])
 const jobs = ref([])
 const metrics = ref([])
-const jmxs = ref([])
 
 const getList = async () => {
   const resp = await axios.get('http://tink.com:31695/files')
@@ -170,7 +168,6 @@ const getList = async () => {
     td.push(c)
   }
   tableData.value = td
-  jmxs.value = td
 }
 
 
@@ -209,8 +206,7 @@ export default {
       tableData,
       jobs,
       metrics,
-      form,
-      jmxs
+      form
     }
   },
 
