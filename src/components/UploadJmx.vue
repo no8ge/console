@@ -26,7 +26,7 @@
             <el-table-column fixed="right" label="Operations" width="120">
               <template #default="scope">
                 <el-button link type="primary" size="small" @click="deleteFile(scope.$index)">delete</el-button>
-                <el-button link type="primary" size="small" @click="runJmx(scope.$index)">run</el-button>
+                <!-- <el-button link type="primary" size="small" @click="runJmx(scope.$index)">run</el-button> -->
               </template>
             </el-table-column>
           </el-table>
@@ -34,6 +34,67 @@
 
         <el-main>
           job
+        </el-main>
+
+        <el-main>
+
+          <el-form :model="form" label-width="120px">
+            <el-form-item label="Nme">
+              <el-input v-model="form.name" />
+            </el-form-item>
+            <el-form-item label="Jmx">
+
+
+              <!-- 自定义下拉框 -->
+              <el-select v-model="form.jmx" placeholder="please select jmx file">
+                <el-option v-for="item in jmxs" :key="item.name" :label="item.name" :value="item.name"
+                  :disabled="flase" />
+              </el-select>
+              <!-- 自定义下拉框 -->
+
+
+
+              <!-- <el-select v-model="form.region" placeholder="please select jmx file">
+                <el-option label="stand-alone" value="shanghai" />
+                <el-option label="cluster" value="beijing" />
+              </el-select> -->
+
+
+            </el-form-item>
+            <el-form-item label="Activity time">
+              <el-col :span="11">
+                <el-date-picker v-model="form.date1" type="date" placeholder="Pick a date" style="width: 100%" />
+              </el-col>
+              <el-col :span="2" class="text-center">
+                <span class="text-gray-500">-</span>
+              </el-col>
+              <el-col :span="11">
+                <el-time-picker v-model="form.date2" placeholder="Pick a time" style="width: 100%" />
+              </el-col>
+            </el-form-item>
+            <el-form-item label="Instant delivery">
+              <el-switch v-model="form.delivery" />
+            </el-form-item>
+            <el-form-item label="job type">
+              <el-checkbox-group v-model="form.type">
+                <el-checkbox label="Stand-alone" name="type" />
+                <el-checkbox label="Cluster" name="type" />
+              </el-checkbox-group>
+            </el-form-item>
+            <el-form-item label="Job type">
+              <el-radio-group v-model="form.resource">
+                <el-radio label="Stand-alone" />
+                <el-radio label="Cluster" />
+              </el-radio-group>
+            </el-form-item>
+            <el-form-item label="describe">
+              <el-input v-model="form.desc" type="textarea" />
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="onSubmit">Create</el-button>
+              <el-button>Cancel</el-button>
+            </el-form-item>
+          </el-form>
         </el-main>
 
         <el-main>
@@ -75,10 +136,26 @@
 <script>
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
+import { reactive } from 'vue'
+
+// do not use same name with ref
+const form = reactive({
+  name: '',
+  jmx: '',
+  // region: '',
+  date1: '',
+  date2: '',
+  delivery: false,
+  type: [],
+  resource: '',
+  desc: '',
+})
+
 
 const tableData = ref([])
 const jobs = ref([])
 const metrics = ref([])
+const jmxs = ref([])
 
 const getList = async () => {
   const resp = await axios.get('http://tink.com:31695/files')
@@ -93,6 +170,7 @@ const getList = async () => {
     td.push(c)
   }
   tableData.value = td
+  jmxs.value = td
 }
 
 
@@ -130,7 +208,9 @@ export default {
     return {
       tableData,
       jobs,
-      metrics
+      metrics,
+      form,
+      jmxs
     }
   },
 
@@ -162,6 +242,11 @@ export default {
       const resp = await axios.post('http://tink.com:31695/analysis')
       metrics.value.push(resp.data)
     },
+    async onSubmit() {
+      await axios.post('http://tink.com:31695/tink/job', { name: form.name, jmx: `/jmx/${form.jmx}` })
+      getJobs()
+      alert('运行成功')
+    }
   }
 }
 </script>
