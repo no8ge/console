@@ -19,6 +19,16 @@
               </div>
             </template>
           </el-upload>
+          <el-upload class="upload-demo" name="file" action="http://tink.com:31695/files/remake" :on-preview="handlePreview"
+            :on-change="handlechange" :on-remove="handleRemove" :before-remove="beforeRemove" multiple :limit="3"
+            :on-exceed="handleExceed" :file-list="fileList">
+            <el-button type="primary">Click to upload jmx without InfluxdbBackendListenerClient</el-button>
+            <template #tip>
+              <div class="el-upload__tip">
+                jpg/png files with a size less than 500KB.
+              </div>
+            </template>
+          </el-upload>
           <el-table :data="tableData" style="width: 100%" align="center">
             <el-table-column fixed prop="date" label="Date" width="150" />
             <el-table-column prop="name" label="Name" width="120" />
