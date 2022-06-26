@@ -125,17 +125,17 @@
         <el-button type="success" align="center" @click="getReport">getMetrics</el-button>
 
         <el-table :data="metrics" style="width: 100%" align="center">
-          <el-table-column fixed prop="application" label="application" width="120" />
-          <el-table-column prop="result" label="result" width="120" />
-          <el-table-column prop="statut" label="statut" width="120" />
-          <el-table-column prop="table" label="table" width="120" />
-          <el-table-column prop="transaction" label="transaction" width="120" />
-          <el-table-column prop="_field" label="_field" width="120" />
-          <el-table-column prop="_measurement" label="_measurement" width="120" />
-          <el-table-column prop="_start" label="_start" width="120" />
-          <el-table-column prop="_stop" label="_stop" width="120" />
-          <el-table-column prop="_time" label="_time" width="120" />
-          <el-table-column prop="_value" label="_value" width="120" />
+          <el-table-column fixed prop="avg" label="avg" width="120" />
+          <el-table-column prop="count" label="count" width="120" />
+          <el-table-column prop="countError" label="countError" width="120" />
+          <el-table-column prop="hit" label="hit" width="120" />
+          <el-table-column prop="max" label="max" width="120" />
+          <el-table-column prop="min" label="min" width="120" />
+          <el-table-column prop="pct90.0" label="pct90.0" width="120" />
+          <el-table-column prop="pct95.0" label="pct95.0" width="120" />
+          <el-table-column prop="pct99.0" label="pct99.0" width="120" />
+          <el-table-column prop="rb" label="rb" width="120" />
+          <el-table-column prop="sb" label="sb" width="120" />
         </el-table>
 
       </el-container>
