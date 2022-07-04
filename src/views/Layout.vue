@@ -2,7 +2,7 @@
   <a-layout style="min-height: 100vh">
     <a-layout-sider v-model:collapsed="collapsed" collapsible>
       <div class="logo">
-        <img alt="Vue logo" src="../assets/heart.jpg" height="120.1" width="180.8">
+        <img alt="Vue logo" src="../assets/heart.jpg" height="100" width="200">
       </div>
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
@@ -49,9 +49,7 @@
       </a-menu>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
         <PageHeader></PageHeader>
-      </a-layout-header>
       <a-layout-content style="margin: 0 16px">
         <div id="nav">
         </div>

@@ -1,25 +1,25 @@
 <template>
-  <a-page-header
-    style="border: 1px solid rgb(235, 237, 240)"
-
-    :breadcrumb="{ routes }"
-
-  />
+  <a-page-header style="border: 1px solid rgb(235, 237, 240);background: #fff" title="Title" :breadcrumb="{ routes }"
+    sub-title="This is a subtitle" />
 </template>
 <script>
-import { defineComponent } from "vue";
-const routes = [
-  {
-    path: "/about",
-    breadcrumbName: "Tink",
-  }
-];
+import { defineComponent } from 'vue';
+const routes = [{
+  path: 'index',
+  breadcrumbName: 'First-level Menu',
+}, {
+  path: 'first',
+  breadcrumbName: 'Second-level Menu',
+}, {
+  path: 'second',
+  breadcrumbName: 'Third-level Menu',
+}];
 export default defineComponent({
-  name: "PageHeader",
   setup() {
     return {
       routes,
     };
   },
+
 });
 </script>
