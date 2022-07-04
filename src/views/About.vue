@@ -1,69 +1,49 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      Distributed performance testing platform based on K8s,<br>
-      Testing in kubernetes, make it easy
-    </p>
-    <h3> Install Tink
-      <ul>
-        <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank"
-            rel="noopener">babel</a></li>
-      </ul>
-    </h3>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank"
-          rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank"
-          rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a>
-      </li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+  <p>Testing in kubernetes, make testing is easy</p>
+  <p>Distributed performance testing platform based on K8s</p>
+  <h2 id="architecture">architecture</h2>
+  <p><img src="../assets/architecture.svg" alt="img.png" /></p>
+  <h2 id="deploy">deploy</h2>
+  <h3 id="required">required</h3>
+  <ul>
+    <li>
+      <a href="https://zh.wikipedia.org/zh-hans/Kubernetes">Kubernetes</a>
+    </li>
+    <li><a href="https://www.kubernetes.org.cn/installkubectl">kubectl</a></li>
+    <li><a href="https://helm.sh/zh/docs/intro/install/">helm</a></li>
+  </ul>
+  <p>
+    Make sure
+    <a href="https://kubernetes.io/zh/docs/concepts/configuration/organize-cluster-access-kubeconfig">kubeconfig</a>
+    is configured correctly
+  </p>
+  <pre><code class="lang-bash">helm repo add tink https://ante-involutum.github.io/chartrepo/
+helm repo <span class="hljs-keyword">update</span> tink
+helm <span class="hljs-keyword">install</span> middleware tink/middleware
+helm <span class="hljs-keyword">install</span> files tink/files
+helm <span class="hljs-keyword">install</span> tink tink/tink
+helm <span class="hljs-keyword">install</span> analysis tink/analysis
+</code></pre>
+  <h2 id="ref">REF</h2>
+  <ul>
+    <li>
+      <a href="https://jmeter.apache.org/usermanual/realtime-results.html#metrics">Metrics exposed</a>
+    </li>
+    <li>
+      <a href="https://jmeter.apache.org/usermanual/realtime-results.html#influxdb_v2">InfluxBd Listener for
+        Jmeter</a>
+    </li>
+  </ul>
 </template>
 
 <script>
 export default {
-  name: 'AboutMe',
-  props: {
-    msg: String
-  }
-}
+  name: "AboutMe",
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+p {
+  font-size: medium;
 }
 </style>
