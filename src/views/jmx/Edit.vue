@@ -1,61 +1,161 @@
 <template>
-  <a-form :model="formState" :label-col="labelCol" :wrapper-col="wrapperCol">
-    <a-form-item label="Activity name">
-      <a-input v-model:value="formState.name" />
+  <a-form
+    ref="formRef"
+    name="dynamic_form_nest_item"
+    :model="dynamicValidateForm"
+    @finish="onFinish"
+  >
+       <a-form-item
+        label="Test Plan"
+        :name = 'samples.value'
+        :rules="{
+          required: true,
+        }"
+      >
+        <a-input v-model:value="dynamicValidateForm.testPlan" />
+      </a-form-item>
+
+       <a-form-item
+        label="Thread Group"
+
+        :rules="{
+          required: true
+        }"
+      >
+        <a-input v-model:value="dynamicValidateForm.ThreadGroup" />
+      </a-form-item>
+
+    <a-space
+      v-for="(sample, index) in dynamicValidateForm.samples"
+      :key="sample.id"
+      style="display: flex; margin-bottom: 8px"
+      align="baseline"
+    >
+
+       <a-form-item
+        label="Name"
+        :rules="{
+          required: true
+        }"
+      >
+        <a-input v-model:value="dynamicValidateForm.HTTPSamplerName" />
+      </a-form-item>
+
+
+       <a-form-item
+        label="Domainr"
+        :rules="{
+          required: true
+        }"
+      >
+        <a-input v-model:value="dynamicValidateForm.HTTPSamplerDomainr" />
+      </a-form-item>
+
+
+       <a-form-item
+        label="Port"
+        :rules="{
+          required: true
+        }"
+      >
+        <a-input v-model:value="dynamicValidateForm.HTTPSamplerPort" />
+      </a-form-item>
+
+       <a-form-item
+        label="protocol"
+        :rules="{
+          required: true
+        }"
+      >
+        <a-input v-model:value="dynamicValidateForm.HTTPSamplerProtocol" />
+      </a-form-item>
+
+
+       <a-form-item
+        label="method"
+        :rules="{
+          required: true
+        }"
+      >
+        <a-input v-model:value="dynamicValidateForm.HTTPSamplerMethod" />
+      </a-form-item>
+
+      <a-form-item
+        :name="['samples', index]"
+        label="Payload"
+        :rules="{
+          required: true,
+        }"
+      >
+        <a-input v-model:value="dynamicValidateForm.HTTPSamplerPayload" />
+      </a-form-item>
+
+
+      <MinusCircleOutlined @click="removesample(sample)" />
+    </a-space>
+    <a-form-item>
+      <a-button type="dashed" block @click="addsample">
+        <PlusOutlined />
+        Add HTTP Sampler
+      </a-button>
     </a-form-item>
-    <a-form-item label="Instant delivery">
-      <a-switch v-model:checked="formState.delivery" />
-    </a-form-item>
-    <a-form-item label="Activity type">
-      <a-checkbox-group v-model:value="formState.type">
-        <a-checkbox value="1" name="type">Online</a-checkbox>
-        <a-checkbox value="2" name="type">Promotion</a-checkbox>
-        <a-checkbox value="3" name="type">Offline</a-checkbox>
-      </a-checkbox-group>
-    </a-form-item>
-    <a-form-item label="Resources">
-      <a-radio-group v-model:value="formState.resource">
-        <a-radio value="1">Sponsor</a-radio>
-        <a-radio value="2">Venue</a-radio>
-      </a-radio-group>
-    </a-form-item>
-    <a-form-item label="Activity form">
-      <a-input v-model:value="formState.desc" type="textarea" />
-    </a-form-item>
-    <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-      <a-button type="primary" @click="onSubmit">Create</a-button>
-      <a-button style="margin-left: 10px">Cancel</a-button>
+    <a-form-item>
+      <a-button type="primary" html-type="submit">Submit</a-button>
     </a-form-item>
   </a-form>
 </template>
 <script>
-import { defineComponent, reactive, toRaw } from 'vue';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue';
+import { defineComponent, reactive, ref, watch } from 'vue';
 export default defineComponent({
-  name: 'JmxEdit',
+  name:'JmxEdit',
+  components: {
+    MinusCircleOutlined,
+    PlusOutlined,
+  },
+
   setup() {
-    const formState = reactive({
-      name: '',
-      delivery: false,
-      type: [],
-      resource: '',
-      desc: '',
+
+    const samples = {
+      Beijing: ['Tiananmen', 'Great Wall'],
+      Shanghai: ['Oriental Pearl', 'The Bund'],
+    };
+    const formRef = ref();
+    const dynamicValidateForm = reactive({
+      samples: [],
+    });
+    watch(() => dynamicValidateForm.area, () => {
+      dynamicValidateForm.samples = [];
     });
 
-    const onSubmit = () => {
-      console.log('submit!', toRaw(formState));
+    const removesample = item => {
+      let index = dynamicValidateForm.samples.indexOf(item);
+
+      if (index !== -1) {
+        dynamicValidateForm.samples.splice(index, 1);
+      }
+    };
+
+    const addsample = () => {
+      dynamicValidateForm.samples.push({
+        value: undefined,
+        price: undefined,
+        id: Date.now(),
+      });
+    };
+
+    const onFinish = values => {
+      console.log('Received values of form:', values);
+      console.log('dynamicValidateForm:', dynamicValidateForm);
     };
 
     return {
-      labelCol: {
-        style: {
-          width: '150px',
-        },
-      },
-      wrapperCol: {
-        span: 14,
-      },
-      formState,
-      onSubmit,
+      formRef,
+      dynamicValidateForm,
+      onFinish,
+      removesample,
+      addsample,
+      samples,
     };
   },
 
