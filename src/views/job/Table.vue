@@ -1,4 +1,5 @@
 <template>
+  <PageHeader></PageHeader>
   <a-table :columns="columns" :data-source="data">
     <template #headerCell="{ column }">
       <template v-if="column.key === 'name'">
@@ -37,6 +38,8 @@
 <script>
 import { SmileOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref, onMounted } from 'vue';
+import PageHeader from '@/components/PageHeader.vue'
+
 
 import { getJob, deleteJob } from '@/api/job';
 var dayjs = require('dayjs')
@@ -88,6 +91,7 @@ export default defineComponent({
   name: 'JobTable',
   components: {
     SmileOutlined,
+    PageHeader
   },
 
   setup() {

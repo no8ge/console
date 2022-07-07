@@ -1,4 +1,5 @@
 <template>
+  <PageHeader></PageHeader>
   <a-form :model="formState" name="validate_other" v-bind="formItemLayout" @finishFailed="onFinishFailed"
     @finish="onFinish">
     <a-form-item label="Tpye">
@@ -24,6 +25,8 @@
 import { defineComponent, reactive, onMounted, ref } from "vue";
 import { getFiles } from "@/api/file";
 import { createJob } from "@/api/job";
+import PageHeader from '@/components/PageHeader.vue'
+
 
 const jmxFiles = ref([]);
 
@@ -43,7 +46,9 @@ const getJmx = async () => {
 
 export default defineComponent({
   name: "JobEdit",
-  components: {},
+  components: {
+    PageHeader
+  },
 
   setup() {
     const formItemLayout = {

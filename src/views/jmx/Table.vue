@@ -1,4 +1,5 @@
 <template>
+  <PageHeader></PageHeader>
   <a-upload v-model:file-list="fileList" name="file" :action="action" :headers="headers" @change="handleChange">
     <a-button type="primary">
       <upload-outlined></upload-outlined>
@@ -46,6 +47,8 @@ import { defineComponent, ref, onMounted } from 'vue';
 import { message } from 'ant-design-vue';
 import { UploadOutlined } from '@ant-design/icons-vue';
 import { getFiles, deleteFile } from '@/api/file';
+import PageHeader from '@/components/PageHeader.vue'
+
 var dayjs = require('dayjs')
 
 
@@ -94,6 +97,7 @@ export default defineComponent({
   components: {
     SmileOutlined,
     UploadOutlined,
+    PageHeader
   },
 
   setup() {

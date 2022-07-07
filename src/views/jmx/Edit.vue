@@ -1,4 +1,5 @@
 <template>
+  <PageHeader></PageHeader>
   <a-form
     ref="formRef"
     name="dynamic_form_nest_item"
@@ -107,11 +108,14 @@
 <script>
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue';
 import { defineComponent, reactive, ref, watch } from 'vue';
+import PageHeader from '@/components/PageHeader.vue'
+
 export default defineComponent({
   name:'JmxEdit',
   components: {
     MinusCircleOutlined,
     PlusOutlined,
+    PageHeader
   },
 
   setup() {

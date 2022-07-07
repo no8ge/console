@@ -49,7 +49,6 @@
       </a-menu>
     </a-layout-sider>
     <a-layout>
-        <PageHeader></PageHeader>
       <a-layout-content style="margin: 0 16px">
         <div id="nav">
         </div>
@@ -65,7 +64,6 @@
 <script>
 import { PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined, FileOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
-import PageHeader from '../components/PageHeader.vue'
 
 export default defineComponent({
   name: 'BaseLayout',
@@ -75,7 +73,6 @@ export default defineComponent({
     UserOutlined,
     TeamOutlined,
     FileOutlined,
-    PageHeader
   },
 
   data() {

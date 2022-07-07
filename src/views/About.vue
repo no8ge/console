@@ -1,4 +1,5 @@
 <template>
+  <PageHeader></PageHeader>
   <p>Testing in kubernetes, make testing is easy</p>
   <p>Distributed performance testing platform based on K8s</p>
   <h2 id="architecture">architecture</h2>
@@ -37,8 +38,14 @@ helm <span class="hljs-keyword">install</span> analysis tink/analysis
 </template>
 
 <script>
+
+import PageHeader from '@/components/PageHeader.vue'
+
 export default {
   name: "AboutMe",
+  components: {
+    PageHeader
+  }
 };
 </script>
 

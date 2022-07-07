@@ -1,4 +1,5 @@
 <template>
+  <PageHeader></PageHeader>
   <a-list size="small" bordered :data-source="data">
     <template #renderItem="{ item }">
       <a-list-item>{{ item }}</a-list-item>
@@ -8,6 +9,8 @@
 <script>
 import { defineComponent, ref, onMounted, onUnmounted } from "vue";
 import { getAnalysis } from "@/api/analysis";
+import PageHeader from '@/components/PageHeader.vue'
+
 var dayjs = require('dayjs')
 
 
@@ -22,6 +25,9 @@ const getDate = async () => {
 
 export default defineComponent({
   name: "metric-list",
+  components:{
+    PageHeader
+  },
   setup() {
     onMounted(() => {
 
