@@ -2,22 +2,22 @@
   <PageHeader></PageHeader>
   <a-form :model="formState" name="validate_other" v-bind="formItemLayout" @finishFailed="onFinishFailed"
     @finish="onFinish">
-    <a-form-item label="Tpye">
-      <span class="ant-form-text">Job</span>
+    <a-form-item label="类型">
+      <span class="ant-form-text">任务</span>
     </a-form-item>
 
-    <a-form-item label="Job name" name="Jobname" :rules="[{ required: true, message: 'Please input your job name!' }]">
+    <a-form-item label="任务名称" name="Jobname" :rules="[{ required: true, message: '请输入唯一任务名称' }]">
       <a-input v-model:value="formState.Jobname" />
     </a-form-item>
 
-    <a-form-item label="Select jmx" name="jmx" has-feedback
-      :rules="[{ required: true, message: 'Please select your jmx!' }]">
-      <a-select v-model:value="formState.jmx" placeholder="Please select a jmx" :options="jmxFiles">
+    <a-form-item label="测试计划" name="jmx" has-feedback
+      :rules="[{ required: true, message: '请选择一个测试计划' }]">
+      <a-select v-model:value="formState.jmx" placeholder="选择脚本文件" :options="jmxFiles">
       </a-select>
     </a-form-item>
 
     <a-form-item :wrapper-col="{ span: 12, offset: 6 }">
-      <a-button type="primary" html-type="submit">Create</a-button>
+      <a-button type="primary" html-type="submit">创建</a-button>
     </a-form-item>
   </a-form>
 </template>

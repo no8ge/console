@@ -2,49 +2,52 @@
   <a-layout style="min-height: 100vh">
     <a-layout-sider v-model:collapsed="collapsed" collapsible>
       <div class="logo">
-        <img alt="Vue logo" src="../assets/gundam.webp" height="100" width="200">
+        <img alt="Tink logo" src="../assets/gundam.webp" height="100" width="200">
       </div>
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
-          <pie-chart-outlined />
-          <router-link to="/" msg="Welcome to Tink App"> About </router-link>
+          <info-circle-outlined />
+          <span>关于我</span>
+          <router-link to="/" msg="Welcome to Tink App"></router-link>
         </a-menu-item>
         <a-menu-item key="2">
-          <desktop-outlined />
-          <router-link to="/Dashbord"> Dashbord </router-link>
+          <fund-outlined />
+          <span>仪表盘</span>
+          <router-link to="/Dashbord"></router-link>
         </a-menu-item>
         <a-sub-menu key="sub1">
           <template #title>
             <span>
-              <user-outlined />
-              <span>Jmx</span>
+              <schedule-outlined />
+              <span>测试计划</span>
             </span>
           </template>
           <a-menu-item key="3">
-            <router-link to="/jmx/edit"> Edit </router-link>
+            <router-link to="/jmx/edit"> 创建 </router-link>
           </a-menu-item>
           <a-menu-item key="4">
-            <router-link to="/jmx/table"> List </router-link>
+            <router-link to="/jmx/table"> 列表 </router-link>
           </a-menu-item>
 
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <template #title>
             <span>
-              <team-outlined />
-              <span>Job</span>
+              <project-outlined />
+              <span>测试任务</span>
             </span>
           </template>
           <a-menu-item key="5">
-            <router-link to="/job/edit"> Create </router-link>
+            <router-link to="/job/edit"> 创建 </router-link>
           </a-menu-item>
           <a-menu-item key="6">
-            <router-link to="/job/table"> List </router-link>
+            <router-link to="/job/table"> 列表 </router-link>
           </a-menu-item>
         </a-sub-menu>
         <a-menu-item key="7">
-          <file-outlined />
-            <router-link to="/metric-list"> Metric </router-link>
+          <fund-view-outlined />
+          <span>性能指标</span>
+          <router-link to="/metric-list"></router-link>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
@@ -62,17 +65,17 @@
   </a-layout>
 </template>
 <script>
-import { PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined, FileOutlined } from '@ant-design/icons-vue';
+import { FundOutlined, ScheduleOutlined, ProjectOutlined, InfoCircleOutlined, FundViewOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'BaseLayout',
   components: {
-    PieChartOutlined,
-    DesktopOutlined,
-    UserOutlined,
-    TeamOutlined,
-    FileOutlined,
+    FundOutlined,
+    ScheduleOutlined,
+    ProjectOutlined,
+    InfoCircleOutlined,
+    FundViewOutlined
   },
 
   data() {

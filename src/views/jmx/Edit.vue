@@ -7,7 +7,7 @@
     @finish="onFinish"
   >
        <a-form-item
-        label="Test Plan"
+        label="测试计划"
         :name = 'samples.value'
         :rules="{
           required: true,
@@ -17,7 +17,7 @@
       </a-form-item>
 
        <a-form-item
-        label="Thread Group"
+        label="线程组"
 
         :rules="{
           required: true
@@ -34,7 +34,7 @@
     >
 
        <a-form-item
-        label="Name"
+        label="请求名称"
         :rules="{
           required: true
         }"
@@ -44,7 +44,7 @@
 
 
        <a-form-item
-        label="Domainr"
+        label="地址"
         :rules="{
           required: true
         }"
@@ -54,7 +54,7 @@
 
 
        <a-form-item
-        label="Port"
+        label="端口"
         :rules="{
           required: true
         }"
@@ -63,7 +63,7 @@
       </a-form-item>
 
        <a-form-item
-        label="protocol"
+        label="协议"
         :rules="{
           required: true
         }"
@@ -73,7 +73,7 @@
 
 
        <a-form-item
-        label="method"
+        label="方法"
         :rules="{
           required: true
         }"
@@ -83,7 +83,7 @@
 
       <a-form-item
         :name="['samples', index]"
-        label="Payload"
+        label="请求体"
         :rules="{
           required: true,
         }"
@@ -97,11 +97,11 @@
     <a-form-item>
       <a-button type="dashed" block @click="addsample">
         <PlusOutlined />
-        Add HTTP Sampler
+        添加 HTTP 请求
       </a-button>
     </a-form-item>
     <a-form-item>
-      <a-button type="primary" html-type="submit">Submit</a-button>
+      <a-button type="primary" html-type="submit">创建</a-button>
     </a-form-item>
   </a-form>
 </template>

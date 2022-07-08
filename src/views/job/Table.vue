@@ -25,11 +25,9 @@
       </template>
       <template v-else-if="column.key === 'action'">
         <span>
-          <a @click="deleteJmxJob(record.name)">Delete</a>
+          <a @click="deleteJmxJob(record.name)">删除</a>
           <a-divider type="vertical" />
-          <a>Down</a>
-          <a-divider type="vertical" />
-          <a>convert</a>
+          <a>重启</a>
         </span>
       </template>
     </template>

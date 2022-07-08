@@ -1,23 +1,21 @@
 <template>
   <PageHeader></PageHeader>
-  <p>Testing in kubernetes, make testing is easy</p>
-  <p>Distributed performance testing platform based on K8s</p>
-  <h2 id="architecture">architecture</h2>
+  <p>云原生性能测试平台，让性能测试更加简单。</p>
+  <h2 id="architecture">架构设计</h2>
   <p><img src="../assets/architecture.svg" alt="img.png" /></p>
-  <h2 id="deploy">deploy</h2>
-  <h3 id="required">required</h3>
+  <h2 id="deploy">部署</h2>
+  <p>平台通过 helm 即可便捷部署至 kubernetes 集群</p>
+  <h3 id="required">依赖</h3>
   <ul>
     <li>
       <a href="https://zh.wikipedia.org/zh-hans/Kubernetes">Kubernetes</a>
     </li>
     <li><a href="https://www.kubernetes.org.cn/installkubectl">kubectl</a></li>
     <li><a href="https://helm.sh/zh/docs/intro/install/">helm</a></li>
+    <li>
+      <a href="https://kubernetes.io/zh/docs/concepts/configuration/organize-cluster-access-kubeconfig">kubeconfig</a>
+    </li>
   </ul>
-  <p>
-    Make sure
-    <a href="https://kubernetes.io/zh/docs/concepts/configuration/organize-cluster-access-kubeconfig">kubeconfig</a>
-    is configured correctly
-  </p>
   <pre><code class="lang-bash">helm repo add tink https://ante-involutum.github.io/chartrepo/
 helm repo <span class="hljs-keyword">update</span> tink
 helm <span class="hljs-keyword">install</span> middleware tink/middleware
@@ -25,7 +23,7 @@ helm <span class="hljs-keyword">install</span> files tink/files
 helm <span class="hljs-keyword">install</span> tink tink/tink
 helm <span class="hljs-keyword">install</span> analysis tink/analysis
 </code></pre>
-  <h2 id="ref">REF</h2>
+  <h2 id="ref">相关链接</h2>
   <ul>
     <li>
       <a href="https://jmeter.apache.org/usermanual/realtime-results.html#metrics">Metrics exposed</a>
