@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 
 const routes = [
   {
-    path: "/Dashbord",
+    path: "/dashbord",
     name: "DashBord",
     meta: {
       path: "/",
@@ -24,26 +24,26 @@ const routes = [
     component: () => import("@/views/About.vue"),
   },
   {
-    path: "/jmx/edit",
-    name: "JmxEdit",
+    path: "/plan/edit",
+    name: "planEdit",
     meta: {
       path: "/",
       title: "测试计划",
       subTitle: "创建、编辑测试计划",
       breadcrumbName: "测试计划 / 创建",
     },
-    component: () => import("@/views/jmx/Edit.vue"),
+    component: () => import("@/views/plan/Edit.vue"),
   },
   {
-    path: "/jmx/table",
-    name: "JmxTable",
+    path: "/plan/table",
+    name: "planTable",
     meta: {
       path: "/",
       title: "计划列表",
       subTitle: "测试计划列表",
       breadcrumbName: "测试计划 / 列表",
     },
-    component: () => import("@/views/jmx/Table.vue"),
+    component: () => import("@/views/plan/Table.vue"),
   },
   {
     path: "/job/edit",
@@ -68,8 +68,8 @@ const routes = [
     component: () => import("@/views/job/Table.vue"),
   },
   {
-    path: "/metric-list",
-    name: "metric-list",
+    path: "/metric",
+    name: "metric",
     meta: {
       path: "/",
       title: "指标",

@@ -13,7 +13,7 @@
         <a-menu-item key="2">
           <fund-outlined />
           <span>仪表盘</span>
-          <router-link to="/Dashbord"></router-link>
+          <router-link to="/dashbord"></router-link>
         </a-menu-item>
         <a-sub-menu key="sub1">
           <template #title>
@@ -23,10 +23,10 @@
             </span>
           </template>
           <a-menu-item key="3">
-            <router-link to="/jmx/edit"> 创建 </router-link>
+            <router-link to="/plan/edit"> 创建 </router-link>
           </a-menu-item>
           <a-menu-item key="4">
-            <router-link to="/jmx/table"> 列表 </router-link>
+            <router-link to="/plan/table"> 列表 </router-link>
           </a-menu-item>
 
         </a-sub-menu>
@@ -47,7 +47,7 @@
         <a-menu-item key="7">
           <fund-view-outlined />
           <span>性能指标</span>
-          <router-link to="/metric-list"></router-link>
+          <router-link to="/metric"></router-link>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
