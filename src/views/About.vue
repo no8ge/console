@@ -33,6 +33,31 @@ helm <span class="hljs-keyword">install</span> analysis tink/analysis
         Jmeter</a>
     </li>
   </ul>
+  <h2 id="deploy">to do</h2>
+  <ul>
+    <li>
+      <p>jmx文件在线编辑、入库</p>
+    </li>
+    <li>
+      <p>性能指标按照条件搜索</p>
+    </li>
+    <li>
+      <p>测试任务参数化</p>
+    </li>
+    <li>
+      <p>测试任务、计划搜索</p>
+    </li>
+    <li>
+      <p>性能指标入库，分析</p>
+    </li>
+    <li>
+      <p>账号、登录系统</p>
+    </li>
+    <li>
+      <p>分布式测试任务</p>
+    </li>
+  </ul>
+
 </template>
 
 <script>
