@@ -2,16 +2,17 @@
   <PageHeader></PageHeader>
   <a-form :model="formState" name="validate_other" v-bind="formItemLayout" @finishFailed="onFinishFailed"
     @finish="onFinish">
-    <a-form-item label="类型">
-      <span class="ant-form-text">任务</span>
+
+    <a-form-item label="任务类型" name="jobType" has-feedback :rules="[{ required: true, message: '请选择任务类型' }]">
+      <a-select v-model:value="formState.jobType" placeholder="选择任务类型" :options="jobTypes">
+      </a-select>
     </a-form-item>
 
     <a-form-item label="任务名称" name="Jobname" :rules="[{ required: true, message: '请输入唯一任务名称' }]">
       <a-input v-model:value="formState.Jobname" />
     </a-form-item>
 
-    <a-form-item label="测试计划" name="jmx" has-feedback
-      :rules="[{ required: true, message: '请选择一个测试计划' }]">
+    <a-form-item label="测试计划" name="jmx" has-feedback :rules="[{ required: true, message: '请选择一个测试计划' }]">
       <a-select v-model:value="formState.jmx" placeholder="选择脚本文件" :options="jmxFiles">
       </a-select>
     </a-form-item>
@@ -29,6 +30,10 @@ import PageHeader from '@/components/PageHeader.vue'
 
 
 const jmxFiles = ref([]);
+const jobTypes = ref([
+  { label: 'Jmeter', value: 'Jmter' },
+  { label: 'locust', value: 'locust' }
+])
 
 const getJmx = async () => {
   const td = [];
@@ -80,7 +85,8 @@ export default defineComponent({
       onFinish,
       onFinishFailed,
       formItemLayout,
-      jmxFiles
+      jmxFiles,
+      jobTypes
     };
   },
 });
