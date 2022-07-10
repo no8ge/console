@@ -12,4 +12,11 @@ async function getFiles() {
   return resp;
 }
 
-export { uploadfile, getFiles, deleteFile };
+async function reMake(name) {
+  const resp = await axios.post("http://tink.com:31695/files/remake", {
+    name: name,
+  });
+  return resp;
+}
+
+export { uploadfile, getFiles, deleteFile, reMake };

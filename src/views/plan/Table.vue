@@ -38,9 +38,9 @@
         <span>
           <a @click="deleteJmx(record.name)">删除</a>
           <a-divider type="vertical" />
-          <a>下载</a>
+          <a @click="downloadJmx(record.name)">下载</a>
           <a-divider type="vertical" />
-          <a>添加后端监听器</a>
+          <a @click="remakeJmx(record.name)">添加后端监听器</a>
         </span>
       </template>
     </template>
@@ -51,7 +51,7 @@ import { FileOutlined } from "@ant-design/icons-vue";
 import { defineComponent, ref, onMounted } from "vue";
 import { message } from "ant-design-vue";
 import { UploadOutlined } from "@ant-design/icons-vue";
-import { getFiles, deleteFile } from "@/api/file";
+import { getFiles, deleteFile, reMake } from "@/api/file";
 import PageHeader from "@/components/PageHeader.vue";
 
 var dayjs = require("dayjs");
@@ -143,6 +143,14 @@ export default defineComponent({
   methods: {
     async deleteJmx(name) {
       await deleteFile(name);
+      alert("done");
+      getDate();
+    },
+    async downloadJmx() {
+      alert("done");
+    },
+    async remakeJmx(name) {
+      await reMake(name);
       alert("done");
       getDate();
     },
