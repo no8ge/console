@@ -51,7 +51,8 @@ import { FileOutlined } from "@ant-design/icons-vue";
 import { defineComponent, ref, onMounted } from "vue";
 import { message } from "ant-design-vue";
 import { UploadOutlined } from "@ant-design/icons-vue";
-import { getFiles, deleteFile, reMake } from "@/api/file";
+import { deleteFile, reMake,getFiles } from "@/api/file";
+// import { getPlans } from "@/api/file";
 import PageHeader from "@/components/PageHeader.vue";
 
 var dayjs = require("dayjs");
@@ -87,6 +88,9 @@ const columns = [
 
 const getDate = async () => {
   const resp = await getFiles();
+  // const resp = await getPlans();
+
+  console.log(resp.data.details)
 
   const td = [];
   for (var i = 0; i < resp.data.details.length; i++) {
