@@ -1,7 +1,7 @@
 <template>
   <PageHeader></PageHeader>
   <a-tabs v-model:activeKey="activeKey">
-    <a-tab-pane key="1" force-render="false" tab="在线编辑">
+    <a-tab-pane key="1" tab="在线创建">
       <a-form ref="formRef" name="dynamic_form_nest_item" :model="dynamicValidateForm" @finish="onFinish">
         <a-form-item label="测试计划" :name="samples.value" :rules="{
           required: true,
@@ -66,17 +66,9 @@
         </a-form-item>
       </a-form>
     </a-tab-pane>
-    <a-tab-pane key="2" tab="导入导出" force-render="false">
-      <a-form>
-        <a-form-item label="测试计划" :name="samples.value" :rules="{
-          required: true,
-        }">
-          <a-input v-model:value="dynamicValidateForm.testPlan" />
-        </a-form-item>
+    <a-tab-pane key="2" tab="上传创建">
+    <UploadFile></UploadFile>
 
-        <a-input v-model:value="value" type="file" placeholder="Basic usage" />
-        <a-button type="primary">创建</a-button>
-      </a-form>
     </a-tab-pane>
   </a-tabs>
 </template>
@@ -84,6 +76,8 @@
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons-vue";
 import { defineComponent, reactive, ref, watch } from "vue";
 import PageHeader from "@/components/PageHeader.vue";
+import UploadFile from '@/components/Upload.vue'
+
 
 export default defineComponent({
   name: "JmxEdit",
@@ -91,6 +85,7 @@ export default defineComponent({
     MinusCircleOutlined,
     PlusOutlined,
     PageHeader,
+    UploadFile
   },
 
   setup() {

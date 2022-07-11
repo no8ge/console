@@ -8,21 +8,23 @@
   <h2 style="text-align: center">彼の者は常に独り 剣の丘で胜利に酔う</h2>
   <h2 style="text-align: center">故に、生涯に意味はなく</h2>
   <h2 style="text-align: center">その体は、きっと剣で出来ていた</h2>
-  <HttpSample></HttpSample>
+  <!-- <HttpSample></HttpSample> -->
   <!-- <ThreadGroup></ThreadGroup> -->
-  <a-button @click="sumit">sumit</a-button>
+  <!-- <UploadFile></UploadFile> -->
 
 </template>
 <script>
 import PageHeader from "@/components/PageHeader.vue";
-import HttpSample from "@/components/jmx/HttpSample.vue";
+// import HttpSample from "@/components/jmx/HttpSample.vue";
 // import ThreadGroup from "@/components/jmx/ThreadGroup.vue";
+// import UploadFile from '@/components/Upload.vue'
 
 export default {
   name: "DashBord",
   components: {
     PageHeader,
-    HttpSample,
+    // UploadFile
+    // HttpSample,
     // ThreadGroup
   },
 
@@ -31,7 +33,6 @@ export default {
   },
   methods: {
     sumit() {
-      // console.log(httpSample.value);
     },
   },
 };
