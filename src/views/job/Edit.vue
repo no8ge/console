@@ -67,7 +67,7 @@ export default defineComponent({
 
   setup() {
     const onFinish = async (values) => {
-      const resp = await axios({
+      await axios({
         method: 'post',
         url: '/api/tink/job',
         data: {
