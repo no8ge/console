@@ -33,7 +33,7 @@
 import { defineComponent, onMounted, ref } from "vue";
 import PageHeader from '@/components/PageHeader.vue'
 import { v4 as uuidv4 } from 'uuid';
-import axios from "axios";
+import { requestInstance} from '@/api/ooxx'
 
 const types = ref([
   { label: 'jmeter', value: 'jmter' },
@@ -67,9 +67,9 @@ export default defineComponent({
 
   setup() {
     const onFinish = async (values) => {
-      await axios({
+      await requestInstance({
         method: 'post',
-        url: '/api/tink/job',
+        url: '/tink/job',
         data: {
           type: values.type,
           name: values.name,
