@@ -2,42 +2,44 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: console
+  name: "{{ .Release.Name }}-{{ .Chart.Name }}"
   labels:
-    app: console
+    app: "{{ .Release.Name }}-{{ .Chart.Name }}"
 spec:
   selector:
-    app: console
+    app: "{{ .Release.Name }}-{{ .Chart.Name }}"
   ports:
     - protocol: TCP
       name: http
       port: 80
-      # nodePort: 31494
       targetPort: 80
-  # type: NodePort
-  clusterIP: None
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: console
+  name: "{{ .Release.Name }}-{{ .Chart.Name }}"
   labels:
-    app: console
+    app: "{{ .Release.Name }}-{{ .Chart.Name }}"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: console
+      app: "{{ .Release.Name }}-{{ .Chart.Name }}"
   template:
     metadata:
       labels:
-        app: console
+        app: "{{ .Release.Name }}-{{ .Chart.Name }}"
     spec:
+{{- if .Values.private }}
+      imagePullSecrets:
+        - name: regcred
+{{- end }}
       containers:
-        - name: console
-          image: mx2542/anti-console:latest
+        - name: "{{ .Release.Name }}-{{ .Chart.Name }}"
+          image: "{{ .Values.registry }}/{{ .Values.repository }}/{{ .Values.image }}"
           ports:
             - name: http
               containerPort: 80
               protocol: TCP
-          imagePullPolicy: Always
+          imagePullPolicy: {{ .Values.imagePullPolicy }}

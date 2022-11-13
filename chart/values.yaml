@@ -1,0 +1,5 @@
+registry: docker.io
+repository: mx2542
+image: "console:latest"
+imagePullPolicy: Always
+private: false
