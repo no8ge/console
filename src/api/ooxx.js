@@ -7,7 +7,7 @@ if (process.env.NODE_ENV == "development") {
 } else {
   url = "http://" + process.env.VUE_APP_host + process.env.VUE_APP_port;
 }
-console.log(url);
+
 export const requestInstance = axios.create({
   baseURL: url,
 });
