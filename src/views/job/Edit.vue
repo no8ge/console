@@ -3,18 +3,25 @@
   <a-form :model="formState" name="validate_other" v-bind="formItemLayout" @finishFailed="onFinishFailed"
     @finish="onFinish">
 
-    <a-form-item label="任务类型" name="jobType" has-feedback :rules="[{ required: true, message: '请选择任务类型' }]">
-      <a-select v-model:value="formState.jobType" placeholder="选择任务类型" :options="jobTypes">
+    <a-form-item label="任务类型" name="type" has-feedback :rules="[{ required: true, message: '请选择任务类型' }]">
+      <a-select v-model:value="formState.type" placeholder="选择任务类型" :options="types">
       </a-select>
     </a-form-item>
 
-    <a-form-item label="任务名称" name="Jobname" :rules="[{ required: true, message: '请输入唯一任务名称' }]">
-      <a-input v-model:value="formState.Jobname" />
+    <a-form-item label="任务名称" name="name" :rules="[{ required: true, message: '请输入唯一任务名称' }]">
+      <a-input v-model:value="formState.name" />
     </a-form-item>
 
-    <a-form-item label="测试计划" name="jmx" has-feedback :rules="[{ required: true, message: '请选择一个测试计划' }]">
-      <a-select v-model:value="formState.jmx" placeholder="选择脚本文件" :options="jmxFiles">
-      </a-select>
+    <a-form-item label="容器镜像" name="image" :rules="[{ required: true, message: '请输入容器镜像名称' }]">
+      <a-input v-model:value="formState.image" />
+    </a-form-item>
+
+    <a-form-item label="启动命令" name="command" :rules="[{ required: true, message: '请输入容器启动命令' }]">
+      <a-input v-model:value="formState.command" />
+    </a-form-item>
+
+    <a-form-item label="报告名称" name="prefix" :rules="[{ required: false, message: '请输入测试报告路径' }]">
+      <a-input v-model:value="formState.prefix" />
     </a-form-item>
 
     <a-form-item :wrapper-col="{ span: 12, offset: 6 }">
@@ -23,31 +30,34 @@
   </a-form>
 </template>
 <script>
-import { defineComponent, reactive, onMounted, ref } from "vue";
-import { getFiles } from "@/api/file";
-import { createJob } from "@/api/job";
+import { defineComponent, onMounted, ref } from "vue";
 import PageHeader from '@/components/PageHeader.vue'
+import { v4 as uuidv4 } from 'uuid';
+import axios from "axios";
 
-
-const jmxFiles = ref([]);
-const jobTypes = ref([
-  { label: 'Jmeter', value: 'Jmter' },
-  { label: 'locust', value: 'locust' }
+const types = ref([
+  { label: 'jmeter', value: 'jmter' },
+  { label: 'locust', value: 'locust' },
+  { label: 'aomaker', value: 'aomaker' }
 ])
 
-const getJmx = async () => {
-  const td = [];
-  const resp = await getFiles();
+const formState = ref({
+  type: "jmeter",
+  name: uuidv4().substr(0, 6),
+  image: 'mx2542/demo:latest',
+  command: 'apache-jmeter-5.4.3/bin/jmeter -n -t src/demo.jmx -l report/test.jtl -e -o report',
+  prefix: '/demo/report'
+});
 
-  console.log(resp.data.details);
-  for (var i of resp.data.details) {
-    const jmx = {};
-    jmx.value = i;
-    jmx.label = i;
-    td.push(jmx);
-  }
-  jmxFiles.value = td;
-};
+const formItemLayout = ref({
+  labelCol: {
+    span: 6,
+  },
+  wrapperCol: {
+    span: 14,
+  },
+});
+
 
 export default defineComponent({
   name: "JobEdit",
@@ -56,37 +66,39 @@ export default defineComponent({
   },
 
   setup() {
-    const formItemLayout = {
-      labelCol: {
-        span: 6,
-      },
-      wrapperCol: {
-        span: 14,
-      },
-    };
-
-    const formState = reactive({});
-
     const onFinish = async (values) => {
-      const resp = await createJob(values);
-      console.log("Success:", resp);
-      console.log("Success:", values);
-      alert("Success");
+      const resp = await axios({
+        method: 'post',
+        url: '/api/tink/job',
+        data: {
+          type: values.type,
+          name: values.name,
+          container: {
+            image: values.image,
+            command: values.command,
+          },
+          prefix: values.prefix
+        },
+        headers: { "Authorization": "admin" },
+      })
+      if (resp.status == 200) {
+        alert("Success");
+      } else {
+        alert("Fail");
+      }
     };
 
     const onFinishFailed = (errorInfo) => {
       console.log("Failed:", errorInfo);
     };
     onMounted(() => {
-      getJmx();
     });
     return {
-      formState,
       onFinish,
       onFinishFailed,
       formItemLayout,
-      jmxFiles,
-      jobTypes
+      types,
+      formState
     };
   },
 });

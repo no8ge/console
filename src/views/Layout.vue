@@ -5,21 +5,17 @@
         <img alt="Tink logo" src="../assets/gundam.webp" height="100" width="200">
       </div>
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-        <a-menu-item key="1">
-          <info-circle-outlined />
-          <span>关于我</span>
-          <router-link to="/" msg="Welcome to Tink App"></router-link>
-        </a-menu-item>
         <a-menu-item key="2">
           <fund-outlined />
-          <span>仪表盘</span>
+          <span>仪表板</span>
           <router-link to="/dashbord"></router-link>
         </a-menu-item>
-        <a-sub-menu key="sub1">
+
+        <!-- <a-sub-menu key="sub1">
           <template #title>
             <span>
               <schedule-outlined />
-              <span>测试计划</span>
+              <span>构建测试</span>
             </span>
           </template>
           <a-menu-item key="3">
@@ -28,13 +24,13 @@
           <a-menu-item key="4">
             <router-link to="/plan/table"> 列表 </router-link>
           </a-menu-item>
+        </a-sub-menu> -->
 
-        </a-sub-menu>
         <a-sub-menu key="sub2">
           <template #title>
             <span>
               <project-outlined />
-              <span>测试任务</span>
+              <span>执行测试</span>
             </span>
           </template>
           <a-menu-item key="5">
@@ -46,8 +42,13 @@
         </a-sub-menu>
         <a-menu-item key="7">
           <fund-view-outlined />
-          <span>性能指标</span>
+          <span>测试报告</span>
           <router-link to="/metric"></router-link>
+        </a-menu-item>
+        <a-menu-item key="1">
+          <info-circle-outlined />
+          <span>使用手册</span>
+          <router-link to="/" msg="Welcome to Atop App"></router-link>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
@@ -59,20 +60,20 @@
 
       </a-layout-content>
       <a-layout-footer style="text-align: center">
-        Tink ©2022 Created By lunz1207
+        Atop ©2022 Created By lunz1207
       </a-layout-footer>
     </a-layout>
   </a-layout>
 </template>
 <script>
-import { FundOutlined, ScheduleOutlined, ProjectOutlined, InfoCircleOutlined, FundViewOutlined } from '@ant-design/icons-vue';
+import { FundOutlined, ProjectOutlined, InfoCircleOutlined, FundViewOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'BaseLayout',
   components: {
     FundOutlined,
-    ScheduleOutlined,
+    // ScheduleOutlined,
     ProjectOutlined,
     InfoCircleOutlined,
     FundViewOutlined

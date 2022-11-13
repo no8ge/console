@@ -1,6 +1,6 @@
 <template>
-  <a-page-header style="border: 1px solid rgb(235, 237, 240); background: #fff" v-bind:title="title"
-    :breadcrumb="{ routes }" v-bind:sub-title="subTitle" />
+  <!-- <a-page-header style="border: 1px solid rgb(235, 237, 240); background: #fff" v-bind:title="title"
+    :breadcrumb="{ routes }" v-bind:sub-title="subTitle" /> -->
   <a-divider style="height: 2px; background-color: #7cb305" />
 </template>
 <script>

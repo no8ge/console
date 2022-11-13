@@ -43,3 +43,14 @@ spec:
               containerPort: 80
               protocol: TCP
           imagePullPolicy: {{ .Values.imagePullPolicy }}
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: atop-globe-config
+                  key: port
+            - name: HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: atop-globe-config
+                  key: host

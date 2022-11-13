@@ -6,9 +6,9 @@ const routes = [
     name: "DashBord",
     meta: {
       path: "/",
-      title: "仪表盘",
+      title: "仪表板",
       subTitle: "信息的汇总展示",
-      breadcrumbName: "仪表盘",
+      breadcrumbName: "仪表板",
     },
     component: () => import("@/views/Dashbord.vue"),
   },

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 async function createJob(obj) {
-  const resp = await axios.post("http://tink.com:31695/tink/job", {
+  const resp = await axios.post("http://atop.test:31695/tink/job", {
     name: obj.Jobname,
     jmx: `/jmx/${obj.jmx}`,
   });
