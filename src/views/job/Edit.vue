@@ -81,11 +81,7 @@ export default defineComponent({
         },
         headers: { "Authorization": "admin" },
       })
-      if (resp.status == 200) {
-        alert("Success");
-      } else {
-        alert("Fail");
-      }
+      alert("Success");
     };
 
     const onFinishFailed = (errorInfo) => {
