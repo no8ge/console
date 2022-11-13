@@ -6,8 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "docker": "docker buildx build  -f Dockerfile  --platform linux/amd64 -t mx2542/anti-console:latest . --push",
-    "deploy": "helm install console chart"
+    "docker": "docker buildx build  -f Dockerfile  --platform linux/amd64 -t dockerhub.qingcloud.com/qingtest/console:latest . --push",
+    "chart": "sh scripts/push-chart.sh"
   },
   "dependencies": {
     "ant-design-vue": "^3.2.9",
