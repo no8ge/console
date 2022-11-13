@@ -44,12 +44,12 @@ spec:
               protocol: TCP
           imagePullPolicy: {{ .Values.imagePullPolicy }}
           env:
-            - name: PORT
+            - name: VUE_APP_port
               valueFrom:
                 configMapKeyRef:
                   name: atop-globe-config
                   key: port
-            - name: HOST
+            - name: VUE_APP_host
               valueFrom:
                 configMapKeyRef:
                   name: atop-globe-config
