@@ -1,8 +1,6 @@
 <template>
   <PageHeader></PageHeader>
-  <p>云原生性能测试平台，让性能测试更加简单。</p>
-  <h2 id="architecture">架构设计</h2>
-  <p><img src="../assets/architecture.svg" alt="img.png" /></p>
+  <p>atop, Automated test open platform, 自动化测试开放平台</p>
   <h2 id="deploy">部署</h2>
   <p>平台通过 helm 即可便捷部署至 kubernetes 集群</p>
   <h3 id="required">依赖</h3>
@@ -10,51 +8,34 @@
     <li>
       <a href="https://zh.wikipedia.org/zh-hans/Kubernetes">Kubernetes</a>
     </li>
-    <li><a href="https://www.kubernetes.org.cn/installkubectl">kubectl</a></li>
     <li><a href="https://helm.sh/zh/docs/intro/install/">helm</a></li>
+  </ul>
+  <pre>
+  <code class="lang-bash">helm repo add atop https://no8ge.github.io/chartrepo/
+  helm repo <span class="hljs-keyword">update</span> atop
+  helm <span class="hljs-keyword">install</span> atop atop/atop -n <span class="hljs-keyword">you-namespace</span>
+</code>
+
+</pre>
+  <h2 id="deploy">功能</h2>
+  <ul>
     <li>
-      <a href="https://kubernetes.io/zh/docs/concepts/configuration/organize-cluster-access-kubeconfig">kubeconfig</a>
+      <p>支持 jmeter</p>
+    </li>
+    <li>
+      <p>支持 locust</p>
     </li>
   </ul>
-  <pre><code class="lang-bash">helm repo add tink https://ante-involutum.github.io/chartrepo/
-helm repo <span class="hljs-keyword">update</span> tink
-helm <span class="hljs-keyword">install</span> middleware tink/middleware
-helm <span class="hljs-keyword">install</span> files tink/files
-helm <span class="hljs-keyword">install</span> tink tink/tink
-helm <span class="hljs-keyword">install</span> analysis tink/analysis
-</code></pre>
+
+  <h2 id="deploy">使用方式</h2>
+  <ul>
+    <p>1. 确保你的测试可以在容器中正常运行</p>
+    <p>2. 在执行测试 - 创建中创建测试任务</p>
+  </ul>
   <h2 id="ref">相关链接</h2>
   <ul>
     <li>
-      <a href="https://jmeter.apache.org/usermanual/realtime-results.html#metrics">Metrics exposed</a>
-    </li>
-    <li>
-      <a href="https://jmeter.apache.org/usermanual/realtime-results.html#influxdb_v2">InfluxBd Listener for
-        Jmeter</a>
-    </li>
-  </ul>
-  <h2 id="deploy">to do</h2>
-  <ul>
-    <li>
-      <p>jmx文件在线编辑、入库</p>
-    </li>
-    <li>
-      <p>性能指标按照条件搜索</p>
-    </li>
-    <li>
-      <p>测试任务参数化</p>
-    </li>
-    <li>
-      <p>测试任务、计划搜索</p>
-    </li>
-    <li>
-      <p>性能指标入库，分析</p>
-    </li>
-    <li>
-      <p>账号、登录系统</p>
-    </li>
-    <li>
-      <p>分布式测试任务</p>
+      <a href="https://github.com/no8ge">Github</a>
     </li>
   </ul>
 
