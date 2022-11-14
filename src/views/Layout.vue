@@ -47,7 +47,7 @@
         </a-menu-item>
         <a-menu-item key="5">
           <info-circle-outlined />
-          <span>使用手册</span>
+          <span>帮助</span>
           <router-link to="/help" msg="Welcome to Atop App"></router-link>
         </a-menu-item>
       </a-menu>
