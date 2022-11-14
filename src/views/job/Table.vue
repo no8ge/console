@@ -104,22 +104,25 @@ export default defineComponent({
     const deleteJob = async (name) => {
       Modal.error({
         title: '确定删除？',
-        content: '任务可能执行中,你真的要删除吗？',
-        onOk() {
+        content: '任务执行中,你真的要删除吗？',
+        async onOk() {
+          await requestInstance({
+            method: 'delete',
+            url: '/tink/job/' + name
+          }),
+            data.value.forEach(element => {
+              if (element.name == name) {
+                data.value.pop(element)
+              }
+            });
           notification.open({
-            duration:2,
+            duration: 1,
             message: '删除成功',
             description: '任务删除成功',
-            onClick: () => {
-              console.log('Clicked!');
-            },
+            onClick: async () => { },
           })
         }
       });
-      await requestInstance({
-        method: 'delete',
-        url: '/tink/job/' + name
-      })
     };
     const getJobLog = async (record) => {
       const resp = await requestInstance({
