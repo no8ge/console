@@ -10,4 +10,5 @@ if (process.env.NODE_ENV == "development") {
 
 export const requestInstance = axios.create({
   baseURL: url,
+  headers: { "Authorization": "admin" }
 });

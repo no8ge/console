@@ -33,7 +33,8 @@
 import { defineComponent, onMounted, ref } from "vue";
 import PageHeader from '@/components/PageHeader.vue'
 import { v4 as uuidv4 } from 'uuid';
-import { requestInstance} from '@/api/ooxx'
+import { requestInstance } from '@/api/ooxx'
+import { notification } from 'ant-design-vue';
 
 const types = ref([
   { label: 'jmeter', value: 'jmter' },
@@ -78,10 +79,15 @@ export default defineComponent({
             command: values.command,
           },
           prefix: values.prefix
-        },
-        headers: { "Authorization": "admin" },
+        }
       })
-      alert("Success");
+      notification.open({
+        message: '创建成功',
+        description: '任务创建成功',
+        onClick: () => {
+          console.log('Clicked!');
+        },
+      })
     };
 
     const onFinishFailed = (errorInfo) => {

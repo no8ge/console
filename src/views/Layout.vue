@@ -5,7 +5,7 @@
         <img alt="Tink logo" src="../assets/gundam.webp" height="100" width="200">
       </div>
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-        <a-menu-item key="2">
+        <a-menu-item key="1">
           <fund-outlined />
           <span>仪表板</span>
           <router-link to="/dashbord"></router-link>
@@ -33,22 +33,22 @@
               <span>执行测试</span>
             </span>
           </template>
-          <a-menu-item key="5">
+          <a-menu-item key="2">
             <router-link to="/job/edit"> 创建 </router-link>
           </a-menu-item>
-          <a-menu-item key="6">
+          <a-menu-item key="3">
             <router-link to="/job/table"> 列表 </router-link>
           </a-menu-item>
         </a-sub-menu>
-        <a-menu-item key="7">
+        <a-menu-item key="4">
           <fund-view-outlined />
           <span>测试报告</span>
           <router-link to="/metric"></router-link>
         </a-menu-item>
-        <a-menu-item key="1">
+        <a-menu-item key="5">
           <info-circle-outlined />
           <span>使用手册</span>
-          <router-link to="/" msg="Welcome to Atop App"></router-link>
+          <router-link to="/help" msg="Welcome to Atop App"></router-link>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
