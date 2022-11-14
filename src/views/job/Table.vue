@@ -25,14 +25,19 @@
       </template>
     </template>
   </a-table>
+
+  <a-drawer v-model:visible="visible" class="custom-class" style="color: black" title="运行日志" width="800"
+    placement="right" @after-visible-change="afterVisibleChange" @close="closeLog">
+    <p v-for="mesg in mesgs" v-bind:key="mesg">{{ mesg }}</p>
+  </a-drawer>
+
 </template>
 <script>
 import { requestInstance } from '@/api/ooxx'
-import { notification } from 'ant-design-vue';
-import { Modal } from 'ant-design-vue';
+import PageHeader from '@/components/PageHeader.vue'
+import { Modal, notification } from 'ant-design-vue'
 import { SmileOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref, h, onMounted } from 'vue';
-import PageHeader from '@/components/PageHeader.vue'
 
 
 const columns = [
@@ -78,6 +83,16 @@ export default defineComponent({
   setup() {
 
     const data = ref([])
+    const timer = ref(null);
+    const mesgs = ref([])
+    const visible = ref(false);
+    const afterVisibleChange = bool => {
+      console.log('visible', bool);
+    };
+    const closeLog = () => {
+      console.log('关闭日志')
+    }
+
     const getJobStats = async (name) => {
       const resp = await requestInstance({
         method: 'get',
@@ -125,27 +140,22 @@ export default defineComponent({
       });
     };
     const getJobLog = async (record) => {
-      const resp = await requestInstance({
-        method: 'get',
-        url: '/analysis/raw',
-        params: {
-          task_name: record.name,
-          task_tag: record.type,
-          _from: 0,
-          size: 200
-        }
-
-      })
-      const c = []
-      resp.data.messages.forEach(element => {
-        c.push(h('p', element))
-      });
-
-      Modal.warning({
-        title: '日志',
-        width: 1000,
-        content: h('div', {}, [h('p', c)])
-      });
+      visible.value = true;
+      timer.value = setInterval(async () => {
+        const resp = await requestInstance({
+          method: 'get',
+          url: '/analysis/raw',
+          params: {
+            task_name: record.name,
+            task_tag: record.type,
+            _from: 0,
+            size: 1
+          }
+        })
+        resp.data.messages.forEach(element => {
+          mesgs.value.push(element)
+        });
+      }, 1000);
     };
     onMounted(async () => {
       const resp = await requestInstance({
@@ -170,6 +180,10 @@ export default defineComponent({
       getReport,
       deleteJob,
       getJobLog,
+      visible,
+      afterVisibleChange,
+      mesgs,
+      closeLog
     };
   },
 
