@@ -108,7 +108,7 @@ export default defineComponent({
     const getReport = async (record) => {
       const resp = await requestInstance({
         method: 'get',
-        url: `/files/report/${record.type}/${record.name}`
+        url: `/files/report/result/${record.type}/${record.name}`
       })
       Modal.success({
         title: '测试报告',
