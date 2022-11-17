@@ -16,12 +16,21 @@
       <a-input v-model:value="formState.image" />
     </a-form-item>
 
-    <a-form-item label="启动命令" name="command" :rules="[{ required: true, message: '请输入容器启动命令' }]">
+    <a-form-item label="启动命令" name="command" :rules="[{ required: false, message: '请输入容器启动命令' }]">
       <a-input v-model:value="formState.command" />
     </a-form-item>
 
     <a-form-item label="报告名称" name="prefix" :rules="[{ required: false, message: '请输入测试报告路径' }]">
       <a-input v-model:value="formState.prefix" />
+    </a-form-item>
+
+    <a-form-item :wrapper-col="{ span: 12, offset: 6 }">
+      <a-upload name='files' :customRequest='uploader' :showUploadList=false directory>
+        <a-button>
+          <upload-outlined></upload-outlined>
+          上传文件夹
+        </a-button>
+      </a-upload>
     </a-form-item>
 
     <a-form-item :wrapper-col="{ span: 12, offset: 6 }">
@@ -35,11 +44,14 @@ import PageHeader from '@/components/PageHeader.vue'
 import { v4 as uuidv4 } from 'uuid';
 import { requestInstance } from '@/api/ooxx'
 import { notification } from 'ant-design-vue';
+import { UploadOutlined } from '@ant-design/icons-vue';
+
 
 const types = ref([
   { label: 'jmeter', value: 'jmter' },
   { label: 'locust', value: 'locust' },
-  { label: 'aomaker', value: 'aomaker' }
+  { label: 'aomaker', value: 'aomaker' },
+  { label: 'konika', value: 'konika' }
 ])
 
 const formState = ref({
@@ -63,7 +75,8 @@ const formItemLayout = ref({
 export default defineComponent({
   name: "JobEdit",
   components: {
-    PageHeader
+    PageHeader,
+    UploadOutlined
   },
 
   setup() {
@@ -93,6 +106,26 @@ export default defineComponent({
     const onFinishFailed = (errorInfo) => {
       console.log("Failed:", errorInfo);
     };
+
+    const uploader = async (files) => {
+      await requestInstance({
+        method: 'post',
+        url: '/files/upload/',
+        headers: { 'Content-Type': 'multipart/form-data' },
+        data: { "files": files.file },
+        params: {
+          bucket_name: 'case'
+        }
+      })
+      notification.open({
+        message: '上传成功',
+        description: '测试文件上传成功',
+        onClick: () => {
+          console.log('Clicked!');
+        },
+      })
+    }
+
     onMounted(() => {
     });
     return {
@@ -100,7 +133,8 @@ export default defineComponent({
       onFinishFailed,
       formItemLayout,
       types,
-      formState
+      formState,
+      uploader
     };
   },
 });
