@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "docker": "docker buildx build  -f Dockerfile  --platform linux/amd64 -t dockerhub.qingcloud.com/qingtest/console:latest . --push",
+    "docker": "docker buildx build  -f Dockerfile  --platform linux/amd64 -t dockerhub.qingcloud.com/qingtest/console:1.0 . --push",
     "chart": "sh scripts/push-chart.sh"
   },
   "dependencies": {
