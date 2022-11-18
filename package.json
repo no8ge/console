@@ -6,8 +6,10 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "docker": "docker buildx build  -f Dockerfile  --platform linux/amd64 -t dockerhub.qingcloud.com/qingtest/console:1.0 . --push",
-    "chart": "sh scripts/push-chart.sh"
+    "chart": "sh scripts/push-chart.sh",
+    "dev": "docker buildx build  -f Dockerfile  --platform linux/amd64 -t dockerhub.qingcloud.com/qingtest/console:dev . --push",
+    "test": "docker buildx build  -f Dockerfile  --platform linux/amd64 -t dockerhub.qingcloud.com/qingtest/console:test . --push",
+    "production": "docker buildx build  -f Dockerfile  --platform linux/amd64 -t dockerhub.qingcloud.com/qingtest/console:1.0 . --push"
   },
   "dependencies": {
     "ant-design-vue": "^3.2.9",
