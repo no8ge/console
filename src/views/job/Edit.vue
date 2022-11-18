@@ -57,7 +57,7 @@ const types = ref([
 const formState = ref({
   type: "jmeter",
   name: uuidv4().substr(0, 6),
-  image: 'mx2542/demo:latest',
+  image: 'dockerhub.qingcloud.com/qingtest/demo:dev',
   command: 'apache-jmeter-5.4.3/bin/jmeter -n -t src/demo.jmx -l report/test.jtl -e -o report',
   prefix: '/demo/report'
 });

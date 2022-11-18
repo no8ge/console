@@ -143,13 +143,16 @@ export default defineComponent({
       visible.value = true;
       timer.value = setInterval(async () => {
         const resp = await requestInstance({
-          method: 'get',
+          method: 'post',
           url: '/analysis/raw',
-          params: {
-            task_name: record.name,
-            task_tag: record.type,
-            _from: 0,
-            size: 1
+          data: {
+            index: 'logs',
+            key_words: {
+              'pod.name': record.name,
+              'container.name': record.type
+            },
+            from_: 0,
+            size: 2
           }
         })
         resp.data.messages.forEach(element => {
