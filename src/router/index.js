@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 const routes = [
+  { path: "/", redirect: { name: "DashBord" } },
   {
     path: "/dashbord",
     name: "DashBord",
@@ -9,7 +10,7 @@ const routes = [
   {
     path: "/help",
     name: "Help",
-    component: () => import("@/views/About.vue"),
+    component: () => import("@/views/Help.vue"),
   },
   {
     path: "/plan/edit",
