@@ -17,7 +17,10 @@
           <a-tag v-if="record.status === 'running'" color="geekblue">
             {{ record.status.toUpperCase() }}
           </a-tag>
-          <a-tag v-if="record.status !== 'running'" color="green">
+          <a-tag v-if="record.status === 'Completed'" color="green">
+            {{ record.status.toUpperCase() }}
+          </a-tag>
+          <a-tag v-if="record.status === 'Error'" color="red">
             {{ record.status.toUpperCase() }}
           </a-tag>
         </span>
@@ -172,7 +175,6 @@ export default defineComponent({
             if (element.type != 'konika') {
               element.image = element.container.image
               element.command = element.container.command
-              element.status = 'completion'
               delete element.container
               jobs.push(element)
 
