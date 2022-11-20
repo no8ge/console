@@ -1,39 +1,34 @@
 <template>
-  <PageHeader></PageHeader>
-  <a-list size="small" bordered :data-source="data">
-    <template #renderItem="{ item }">
-      <a-list-item>{{ item }}</a-list-item>
-    </template>
-  </a-list>
+  <a-card title="测试数据" style="width: 1000px">
+    <p>card content</p>
+    <p>card content</p>
+    <p>card content</p>
+  </a-card>
+  <br />
+
+  <a-card title="平台数据" style="width: 1000px">
+    <p>card content</p>
+    <p>card content</p>
+    <p>card content</p>
+  </a-card>
+
 </template>
 <script>
 import { defineComponent, ref, onMounted, onUnmounted } from "vue";
-import { getAnalysis } from "@/api/analysis";
-import PageHeader from '@/components/PageHeader.vue'
 
-var dayjs = require('dayjs')
 
 
 const data = ref([]);
 const timer = ref(null);
 
-const getDate = async () => {
-  const resp = await getAnalysis();
-  resp.data.time = dayjs().format('YYYY-MM-DD HH:mm:ss')
-  data.value.unshift(JSON.stringify(resp.data));
-};
-
 export default defineComponent({
-  name: "metric-list",
+  name: "MetricList",
   components:{
-    PageHeader
   },
   setup() {
     onMounted(() => {
 
-      getDate();
       timer.value = setInterval(async () => {
-        await getDate();
       }, 2000);
     });
 

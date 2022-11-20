@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import BaseLayout from './views/Layout.vue'
+import BaseLayout from './views/layout/Layout.vue'
 
 export default {
   name: 'App',

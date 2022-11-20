@@ -5,9 +5,9 @@ module.exports = defineConfig({
   devServer: {
     port: 8000,
     proxy: {
-      "/api": {
+      "/apis": {
         target: 'http://atop.test:31694',
-        pathRewrite: { "^/api": "" },
+        pathRewrite: { "^/apis": "" },
         ws: false,
         changeOrigin: true,
       },
