@@ -5,7 +5,7 @@ export async function query(container, pod) {
     method: "get",
     url: "api/v1/query",
     params: {
-      query: `kube_pod_container_status_running{container="${container}",namespace="${env.VUE_APP_namespace}",pod="${pod}"} - kube_pod_container_status_terminated{container="${container}",namespace="${env.VUE_APP_namespace}",pod="${pod}"}`,
+      query: `tink_task_status{container="${container}",namespace="${env.VUE_APP_namespace}",pod="${pod}"}`,
     },
   });
   return resp;

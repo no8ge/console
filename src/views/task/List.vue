@@ -46,7 +46,7 @@
 <script>
 import { requestInstance } from '@/api/request'
 import { Modal, notification } from 'ant-design-vue'
-import { defineComponent, ref, onBeforeUnmount, onMounted } from 'vue';
+import { defineComponent, ref, onBeforeUnmount, onBeforeMount, onMounted } from 'vue';
 
 
 const columns = [
@@ -101,7 +101,7 @@ export default defineComponent({
     }
 
     const getReport = async (record) => {
-      if (record.status == 'completion') {
+      if (record.status == 'Completed') {
         const resp = await requestInstance({
           method: 'get',
           url: `/files/report/result/${record.type}/${record.name}`
@@ -159,6 +159,28 @@ export default defineComponent({
         mesgs.value.push('暂无日志')
       }
     };
+    onBeforeMount(async () => {
+      const resp = await requestInstance({
+        method: 'get',
+        url: '/tink/jobs',
+        params: {
+          _from: 0,
+          size: 20
+        }
+      })
+      const jobs = []
+      resp.data._sources.forEach(element => {
+        if (element.type != 'konika') {
+          element.image = element.container.image
+          element.command = element.container.command
+          delete element.container
+          jobs.push(element)
+        }
+      });
+      data.value = jobs
+    }
+    )
+
     onMounted(async () => {
       window.timer = setInterval(() => {
         setTimeout(async () => {
