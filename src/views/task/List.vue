@@ -14,13 +14,19 @@
 
       <template v-else-if="column.key === 'status'">
         <span>
-          <a-tag v-if="record.status === 'running'" color="geekblue">
+          <a-tag v-if="record.status === 'Running'" color="geekblue">
             {{ record.status.toUpperCase() }}
           </a-tag>
-          <a-tag v-if="record.status === 'Completed'" color="green">
+          <a-tag v-if="record.status === 'Succeeded'" color="green">
             {{ record.status.toUpperCase() }}
           </a-tag>
-          <a-tag v-if="record.status === 'Error'" color="red">
+          <a-tag v-if="record.status === 'Pending'" color="yellow">
+            {{ record.status.toUpperCase() }}
+          </a-tag>
+          <a-tag v-if="record.status === 'Failed'" color="red">
+            {{ record.status.toUpperCase() }}
+          </a-tag>
+          <a-tag v-if="record.status === 'Unknown'" color="black">
             {{ record.status.toUpperCase() }}
           </a-tag>
         </span>
@@ -44,6 +50,7 @@
 
 </template>
 <script>
+import { tink_task_status } from '@/api/preometheus';
 import { requestInstance } from '@/api/request'
 import { Modal, notification } from 'ant-design-vue'
 import { defineComponent, ref, onBeforeUnmount, onBeforeMount, onMounted } from 'vue';
@@ -184,27 +191,16 @@ export default defineComponent({
     onMounted(async () => {
       window.timer = setInterval(() => {
         setTimeout(async () => {
-          const resp = await requestInstance({
-            method: 'get',
-            url: '/tink/jobs',
-            params: {
-              _from: 0,
-              size: 20
-            }
-          })
-          const jobs = []
-          resp.data._sources.forEach(element => {
-            if (element.type != 'konika') {
-              element.image = element.container.image
-              element.command = element.container.command
-              delete element.container
-              jobs.push(element)
-
-            }
+          const resp = await tink_task_status()
+          resp.data.data.result.forEach(element => {
+            data.value.forEach(e => {
+              if (e.name == element.metric.name) {
+                e.status = element.metric.status
+              }
+            });
           });
-          data.value = jobs
         }, 0);
-      }, 2000);
+      }, 5000);
     })
 
     onBeforeUnmount(() => {
