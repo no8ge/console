@@ -108,7 +108,7 @@ export default defineComponent({
     }
 
     const getReport = async (record) => {
-      if (record.status == 'Completed') {
+      if (record.status == 'Succeeded') {
         const resp = await requestInstance({
           method: 'get',
           url: `/files/report/result/${record.type}/${record.name}`
@@ -190,14 +190,17 @@ export default defineComponent({
 
     onMounted(async () => {
       window.timer = setInterval(() => {
+        const statusMap = {
+          '0': 'Running',
+          '1': 'Succeeded',
+          '2': 'Pending',
+          '3': 'Failed',
+          '4': 'Unknown',
+        }
         setTimeout(async () => {
-          const resp = await tink_task_status()
-          resp.data.data.result.forEach(element => {
-            data.value.forEach(e => {
-              if (e.name == element.metric.name) {
-                e.status = element.metric.status
-              }
-            });
+          data.value.forEach(async element => {
+            const resp = await tink_task_status(element.name)
+            element.status = statusMap[resp.data.data.result[0].value[1]]
           });
         }, 0);
       }, 5000);
