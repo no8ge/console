@@ -7,8 +7,12 @@
       </a-select>
     </a-form-item>
 
-    <a-form-item label="任务名称" name="name" :rules="[{ required: true, message: '请输入唯一任务名称' }]">
+    <a-form-item label="任务名称" name="name" :rules="[{ required: true, message: '请输入唯一名称' }]">
       <a-input v-model:value="formState.name" />
+    </a-form-item>
+
+    <a-form-item label="流水号" name="uid" :rules="[{ required: true, message: '请输入唯一流水号' }]">
+      <a-input v-model:value="formState.uid" />
     </a-form-item>
 
     <a-form-item label="容器镜像" name="image" :rules="[{ required: true, message: '请输入容器镜像名称' }]">
@@ -42,11 +46,12 @@ const types = ref([
 ])
 
 const formState = ref({
-  type: "jmeter",
+  type: "aomaker",
   name: uuidv4().substr(0, 6),
-  image: 'dockerhub.qingcloud.com/qingtest/demo:dev',
-  command: 'apache-jmeter-5.4.3/bin/jmeter -n -t src/demo.jmx -l report/test.jtl -e -o report',
-  prefix: '/demo/report'
+  uid: uuidv4().substr(0, 7),
+  image: 'dockerhub.qingcloud.com/listen/hpc:4.0',
+  command: 'arun -e testbm -m hpc_fs',
+  prefix: '/data/autotest/reports'
 });
 
 const formItemLayout = ref({
@@ -72,6 +77,7 @@ export default defineComponent({
         data: {
           type: values.type,
           name: values.name,
+          uid: values.uid,
           container: {
             image: values.image,
             command: values.command,

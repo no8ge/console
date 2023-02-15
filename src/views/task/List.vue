@@ -68,6 +68,11 @@ const columns = [
     key: 'name',
   },
   {
+    name: 'uid',
+    dataIndex: 'uid',
+    key: 'uid',
+  },
+  {
     title: 'type',
     dataIndex: 'type',
     key: 'type',
