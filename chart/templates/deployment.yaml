@@ -31,10 +31,8 @@ spec:
       labels:
         app: "{{ .Release.Name }}-{{ .Chart.Name }}"
     spec:
-{{- if .Values.private }}
       imagePullSecrets:
         - name: regcred
-{{- end }}
       containers:
         - name: "{{ .Release.Name }}-{{ .Chart.Name }}"
           image: "{{ .Values.registry }}/{{ .Values.repository }}/{{ .Values.image }}"
@@ -42,7 +40,7 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          imagePullPolicy: Always
           env:
             - name: VUE_APP_port
               valueFrom:
