@@ -1,6 +1,6 @@
 # console
 
-console for atop
+平台前端控制台
 
 ## Project setup
 
